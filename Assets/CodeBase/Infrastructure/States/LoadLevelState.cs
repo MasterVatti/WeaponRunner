@@ -1,24 +1,26 @@
 using System.Threading.Tasks;
 using CodeBase.Infrastructure.Factory;
+using CodeBase.Services;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
 {
   public class LoadLevelState : IPayloadedState<string>
   {
-    private const string InitialPointTag = "InitialPoint";
     private readonly GameStateMachine _stateMachine;
     private readonly SceneLoader _sceneLoader;
     private readonly LoadingCurtain _loadingCurtain;
     private readonly IGameFactory _gameFactory;
+    private readonly IStaticDataService _dataService;
 
     public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain,
-      IGameFactory gameFactory)
+      IGameFactory gameFactory, IStaticDataService dataService)
     {
       _stateMachine = gameStateMachine;
       _sceneLoader = sceneLoader;
       _loadingCurtain = loadingCurtain;
       _gameFactory = gameFactory;
+      _dataService = dataService;
     }
 
     public void Enter(string sceneName)
@@ -32,6 +34,7 @@ namespace CodeBase.Infrastructure.States
 
     private async void OnLoaded()
     {
+      _dataService.Load();
       await InitGameWorld();
 
       _stateMachine.Enter<GameState>();
@@ -39,13 +42,16 @@ namespace CodeBase.Infrastructure.States
 
     private async Task InitGameWorld()
     {
-      // GameObject player = await InitPlayer();
-      // GameObject hud = await InitHud();
+      await InitLocation();
+      GameObject player = await InitPlayer();
+      GameObject hud = await InitHud();
       // CameraFollow(player);
     }
 
+    private async Task<GameObject> InitLocation() => await _gameFactory.CreateLocation(_dataService.ForLevel(1).Location);
+
     private async Task<GameObject> InitPlayer() =>
-      await _gameFactory.CreatePlayer(GameObject.FindWithTag(InitialPointTag).transform.position);
+      await _gameFactory.CreatePlayer(_dataService.ForLevel(1).InitialHeroPosition);
 
     private async Task<GameObject> InitHud() => await _gameFactory.CreateHud();
 

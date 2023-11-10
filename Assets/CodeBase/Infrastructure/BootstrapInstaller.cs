@@ -1,6 +1,7 @@
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.States;
+using CodeBase.Services;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,7 @@ namespace CodeBase.Infrastructure
       Container.Bind<LoadingCurtain>().FromInstance(curtain).AsSingle();
       Container.BindInterfacesAndSelfTo<GameFactory>().AsSingle();
       Container.BindInterfacesAndSelfTo<AssetProvider>().AsSingle();
+      Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle();
     }
   }
 }

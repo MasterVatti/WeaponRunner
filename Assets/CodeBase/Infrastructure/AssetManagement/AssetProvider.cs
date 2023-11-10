@@ -15,5 +15,7 @@ namespace CodeBase.Infrastructure.AssetManagement
       var prefab = Resources.Load<GameObject>(path);
       return Object.Instantiate(prefab);
     }
+
+    public GameObject Instantiate(GameObject prefab) => Object.Instantiate(prefab);
   }
 }
