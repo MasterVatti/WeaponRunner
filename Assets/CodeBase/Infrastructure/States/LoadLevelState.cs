@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using CodeBase.Infrastructure.Factory;
+using CodeBase.Infrastructure.StaticData;
 using CodeBase.Services;
 using UnityEngine;
 
@@ -44,17 +45,24 @@ namespace CodeBase.Infrastructure.States
     {
       await InitLocation();
       GameObject player = await InitPlayer();
+      await InitEnemies();
       GameObject hud = await InitHud();
       // CameraFollow(player);
     }
 
-    private async Task<GameObject> InitLocation() => await _gameFactory.CreateLocation(_dataService.ForLevel(1).Location);
+    private async Task<GameObject> InitLocation() => await _gameFactory.CreateGameObject(_dataService.ForLevel(1).Location);
 
     private async Task<GameObject> InitPlayer() =>
       await _gameFactory.CreatePlayer(_dataService.ForLevel(1).InitialHeroPosition);
 
-    private async Task<GameObject> InitHud() => await _gameFactory.CreateHud();
+    private async Task InitEnemies()
+    {
+      foreach (EnemySpawnPositions points in _dataService.ForLevel(1).EnemySpawnPositions)
+        foreach (Vector3 position in points.Positions)
+          await _gameFactory.CreateGameObject(_dataService.ForLevel(1).Enemy, position, Quaternion.identity);
+    }
 
+    private async Task<GameObject> InitHud() => await _gameFactory.CreateHud();
     // private void CameraFollow(GameObject player) => Camera.main.GetComponent<CameraFollow>().Follow(player);
   }
 }

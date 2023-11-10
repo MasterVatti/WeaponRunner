@@ -18,5 +18,15 @@ MonoBehaviour:
   - {x: 2.71, y: 0, z: 12.257}
   - {x: 2.937, y: 3.01, z: 25.579}
   - {x: 2.555, y: 3.01, z: 38.372}
-  EnemySpawnPositions: []
+  EnemySpawnPositions:
+  - Positions:
+    - {x: -0.48, y: 0, z: 16.55}
+    - {x: 2.708, y: 0, z: 17.232}
+    - {x: 4.72, y: 0, z: 17.232}
+    - {x: 7.3, y: 0, z: 16.46}
+  - Positions:
+    - {x: 5.54, y: 2.974, z: 30.283}
+    - {x: 3, y: 2.974, z: 30.06}
+    - {x: 0.64, y: 2.974, z: 28.92}
   Location: {fileID: 6558265680639281987, guid: 564cfcd4de1994fd895b938440d824f2, type: 3}
+  Enemy: {fileID: 1045401375514670, guid: 931a37f27bcb0456c894cc9d23ca7d35, type: 3}

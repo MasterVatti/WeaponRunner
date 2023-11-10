@@ -9,7 +9,8 @@ namespace CodeBase.Infrastructure.StaticData
     public int LevelNumber;
     public Vector3 InitialHeroPosition;
     public List<Vector3> PlayerStopPositions;
-    public List<Vector3> EnemySpawnPositions;
+    public List<EnemySpawnPositions> EnemySpawnPositions;
     public GameObject Location;
+    public GameObject Enemy;
   }
 }

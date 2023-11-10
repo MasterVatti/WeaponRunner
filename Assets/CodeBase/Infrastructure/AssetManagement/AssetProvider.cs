@@ -17,5 +17,8 @@ namespace CodeBase.Infrastructure.AssetManagement
     }
 
     public GameObject Instantiate(GameObject prefab) => Object.Instantiate(prefab);
+
+    public GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation) =>
+      Object.Instantiate(prefab, position, rotation);
   }
 }
