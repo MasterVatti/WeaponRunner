@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using CodeBase.CameraLogic;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.StaticData;
 using CodeBase.Services;
@@ -47,7 +48,7 @@ namespace CodeBase.Infrastructure.States
       GameObject player = await InitPlayer();
       await InitEnemies();
       GameObject hud = await InitHud();
-      // CameraFollow(player);
+      CameraFollow(player);
     }
 
     private async Task<GameObject> InitLocation() => await _gameFactory.CreateGameObject(_dataService.ForLevel(1).Location);
@@ -63,6 +64,7 @@ namespace CodeBase.Infrastructure.States
     }
 
     private async Task<GameObject> InitHud() => await _gameFactory.CreateHud();
-    // private void CameraFollow(GameObject player) => Camera.main.GetComponent<CameraFollow>().Follow(player);
+    
+    private void CameraFollow(GameObject player) => Camera.main.GetComponent<CameraFollow>().Follow(player);
   }
 }
