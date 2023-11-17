@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CodeBase.Services;
 using UnityEngine;
@@ -12,20 +13,28 @@ namespace CodeBase.Player
     [SerializeField] private PlayerAnimator _animator;
     
     private IStaticDataService _dataService;
+    private IUIService _uiService;
     private List<Vector3> _playerStopPositions;
     private int _pointAchievedQuantity;
 
     [Inject]
-    private void Constructor(IStaticDataService dataService)
+    private void Constructor(IStaticDataService dataService, IUIService uiService)
     {
       _dataService = dataService;
+      _uiService = uiService;
+      _uiService.TapAreaClicked += OnTapAreaClicked;
+      _playerStopPositions = _dataService.ForLevel(1).PlayerStopPositions;
+    }
+
+    private void OnTapAreaClicked()
+    {
+      _animator.PlayRunning();
+      MoveToPoint();
     }
 
     private void Start()
     {
-      _playerStopPositions = _dataService.ForLevel(1).PlayerStopPositions;
-      _animator.PlayRunning();
-      MoveToPoint();
+
     }
 
     private void FixedUpdate()
