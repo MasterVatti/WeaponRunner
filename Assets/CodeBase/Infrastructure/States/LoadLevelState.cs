@@ -60,7 +60,7 @@ namespace CodeBase.Infrastructure.States
     {
       foreach (EnemySpawnPositions points in _dataService.ForLevel(1).EnemySpawnPositions)
         foreach (Vector3 position in points.Positions)
-          await _gameFactory.CreateGameObject(_dataService.ForLevel(1).Enemy, position, Quaternion.identity);
+          await _gameFactory.CreateGameObject(_dataService.ForLevel(1).Enemy, position, new Quaternion(0f, 180f, 0f, 0f));
     }
 
     private async Task<GameObject> InitHud() => await _gameFactory.CreateHud();
