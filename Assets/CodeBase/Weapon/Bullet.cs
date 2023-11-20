@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace CodeBase.Weapon
 {
   public class Bullet : MonoBehaviour
   {
+    public event Action<Bullet> BulletHit;
+    
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _bulletDamage;
     [SerializeField] private TriggerObserver _triggerObserver;
@@ -29,7 +32,7 @@ namespace CodeBase.Weapon
       if ((_consumptionMask.value & (1 << obj.gameObject.layer)) != 0)
         obj.gameObject.GetComponent<IHealth>().TakeDamage(_bulletDamage);
 
-      Destroy(gameObject);
+      BulletHit?.Invoke(this);
     }
 
     private void TriggerExit(Collider obj)

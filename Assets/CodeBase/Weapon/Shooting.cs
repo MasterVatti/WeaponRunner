@@ -4,8 +4,7 @@ namespace CodeBase.Weapon
 {
   public class Shooting : MonoBehaviour
   {
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private Transform _spawn;
+    [SerializeField] private BulletManager _bulletManager;
     [SerializeField] private float _bulletSpeedCoefficient;
 
     private bool _isShootingAllowed;
@@ -25,15 +24,8 @@ namespace CodeBase.Weapon
         Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1000)) FireBullet(hit.point);
+        if (Physics.Raycast(ray, out hit, 1000)) _bulletManager.Shoot(hit.point, _bulletSpeedCoefficient);
       }
-    }
-
-    private void FireBullet(Vector3 target)
-    {
-      GameObject bullet = Instantiate(_bulletPrefab, _spawn.position, Quaternion.identity);
-      bullet.transform.LookAt(target);
-      bullet.GetComponent<Bullet>().Initialize(_bulletSpeedCoefficient);
     }
   }
 }

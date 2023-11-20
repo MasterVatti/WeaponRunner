@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23074311415513262}
   - component: {fileID: 64883286283145902}
   - component: {fileID: 7911349365083938191}
+  - component: {fileID: 5471963294626346437}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -113,9 +114,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cfa3d72a471423a9c7fb17f28619092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 314792826683556841, guid: 4b1b0af038dca49bea479a44b0c8e558, type: 3}
-  _spawn: {fileID: 5681808056525453841}
+  _bulletManager: {fileID: 5471963294626346437}
   _bulletSpeedCoefficient: 1
+--- !u!114 &5471963294626346437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121525155587680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9141e92bd2485b91fa3c8c444547be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: -344829117032350690, guid: 4b1b0af038dca49bea479a44b0c8e558, type: 3}
+  _spawn: {fileID: 5681808056525453841}
+  _poolSize: 25
 --- !u!1 &1171266974439338
 GameObject:
   m_ObjectHideFlags: 0

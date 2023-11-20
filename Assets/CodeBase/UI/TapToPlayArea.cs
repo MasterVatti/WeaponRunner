@@ -13,7 +13,7 @@ namespace CodeBase.UI
     [SerializeField] private Button _button;
     [SerializeField] private TextMeshProUGUI _text;
 
-    private const string LevelCompletedText = "Level Comleted. Tap to Next.";
+    private const string LevelCompletedText = "Level Comleted. Tap to Next";
     private const string LevelStartText = "Tap To Play";
 
     private IUIService _uiService;
