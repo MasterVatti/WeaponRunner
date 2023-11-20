@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7822356743989626229}
   - component: {fileID: 5151806561128875395}
   - component: {fileID: -344829117032350690}
+  - component: {fileID: -6914995928448118813}
+  - component: {fileID: 8545854486904978911}
   m_Layer: 0
   m_Name: PistolBullet
   m_TagString: Untagged
@@ -93,7 +95,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314792826683556841}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -111,3 +113,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 5
+  _bulletDamage: 1
+  _triggerObserver: {fileID: -6914995928448118813}
+  _consumptionMask:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &-6914995928448118813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314792826683556841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14383f2371af4c99951c7c6e9a4673ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &8545854486904978911
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314792826683556841}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

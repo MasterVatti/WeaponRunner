@@ -1,18 +1,22 @@
 using UnityEngine;
 
-namespace CodeBase.Player
+namespace CodeBase.Weapon
 {
   public class Shooting : MonoBehaviour
   {
     [SerializeField] private GameObject _bulletPrefab;
-    
     [SerializeField] private Transform _spawn;
     [SerializeField] private float _bulletSpeedCoefficient;
 
+    private bool _isShootingAllowed;
+
     private void Update()
     {
-      CheckInputTouch();
+      if (_isShootingAllowed) CheckInputTouch();
     }
+
+    public void DisallowShooting() => _isShootingAllowed = false;
+    public void AllowShooting() => _isShootingAllowed = true;
 
     private void CheckInputTouch()
     {

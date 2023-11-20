@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.Factory;
-using CodeBase.Services;
+using CodeBase.Services.Level;
+using CodeBase.Services.StaticData;
 using Zenject;
 
 namespace CodeBase.Infrastructure.States
@@ -12,13 +13,13 @@ namespace CodeBase.Infrastructure.States
     private IExitableState _activeState;
 
     public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory,
-      IStaticDataService dataService)
+      IStaticDataService dataService, ILevelService levelService)
     {
       _states = new Dictionary<Type, IExitableState>
       {
         [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
         [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory, dataService),
-        [typeof(GameState)] = new GameState(this),
+        [typeof(GameState)] = new GameState(this, levelService),
       };
     }
 

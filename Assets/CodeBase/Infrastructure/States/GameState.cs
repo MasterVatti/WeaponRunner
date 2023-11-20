@@ -1,17 +1,31 @@
+using CodeBase.Services.Level;
+
 namespace CodeBase.Infrastructure.States
 {
   public class GameState : IState
   {
-    public GameState(GameStateMachine stateMachine)
-    {
-    }
+    private ILevelService _levelService;
+    private GameStateMachine _stateMachine;
 
-    public void Exit()
+    public GameState(GameStateMachine stateMachine, ILevelService levelService)
     {
+      _stateMachine = stateMachine;
+      _levelService = levelService;
     }
 
     public void Enter()
     {
+      _levelService.LevelCompleted += OnLevelCompleted;
+    }
+
+    public void Exit()
+    {
+      _levelService.LevelCompleted -= OnLevelCompleted;
+    }
+
+    private void OnLevelCompleted()
+    {
+      _stateMachine.Enter<BootstrapState>();
     }
   }
 }

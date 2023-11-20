@@ -1,7 +1,10 @@
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.States;
-using CodeBase.Services;
+using CodeBase.Services.Enemy;
+using CodeBase.Services.Level;
+using CodeBase.Services.StaticData;
+using CodeBase.Services.UI;
 using UnityEngine;
 using Zenject;
 
@@ -22,6 +25,8 @@ namespace CodeBase.Infrastructure
       Container.BindInterfacesAndSelfTo<AssetProvider>().AsSingle();
       Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle();
       Container.BindInterfacesAndSelfTo<UIService>().AsSingle();
+      Container.BindInterfacesAndSelfTo<EnemyDeathService>().AsSingle();
+      Container.BindInterfacesAndSelfTo<LevelService>().AsSingle();
     }
   }
 }

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using CodeBase.CameraLogic;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.StaticData;
-using CodeBase.Services;
+using CodeBase.Services.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States

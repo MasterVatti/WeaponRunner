@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeBase.Services
+namespace CodeBase.Services.UI
 {
   public class UIService : IUIService
   {
