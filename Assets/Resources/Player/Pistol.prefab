@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletManager: {fileID: 5471963294626346437}
-  _bulletSpeedCoefficient: 1
+  _bulletSpeedCoefficient: 2.25
 --- !u!114 &5471963294626346437
 MonoBehaviour:
   m_ObjectHideFlags: 0
